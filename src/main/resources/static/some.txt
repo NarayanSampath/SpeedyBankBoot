@@ -1,0 +1,11 @@
+working Urls:
+Front-End Urls:
+	1. Home 				= "/"
+	2. Sign Up				= "/reg"
+	3. Sign In				= "login"
+	4. User Dashboard		= "userdash"
+	5. Admin Dashboard		= "admindash"
+	
+Back-end Urls:
+	1.
+

@@ -7,19 +7,25 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
+import com.eg.speedybank.handler.LoginSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource dataSource;
-//	@Autowired
-//	private LoginSuccessHandler successHandler;
+	@Autowired
+	private LoginSuccessHandler successHandler;
+	private AuthenticationFailureHandler customAuthenticationfailureHandler;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -50,11 +56,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.csrf().disable().httpBasic().and().authorizeRequests()
-				.antMatchers("/signin", "/reg", "/", "/register", "/css/**", "/js/**", "/images/**", "/videos/**").permitAll()
+				.antMatchers("/login", "/reg", "/", "/register", "/css/**", "/js/**", "/images/**", "/videos/**").permitAll().and()
 //				.antMatchers("/userdash").hasAnyRole("ADMIN", "USER").anyRequest().authenticated()
-				.antMatchers("/admindash").hasRole("ADMIN").anyRequest().authenticated().and()
-				.formLogin().permitAll().and().logout().permitAll();
-//				.successHandler(successHandler)
+//				.antMatchers("/admindash").hasRole("ADMIN").anyRequest().authenticated().and()
+				.formLogin().successHandler(successHandler).and()
+				.formLogin().failureHandler(customAuthenticationfailureHandler).failureUrl("/login?error=Email Or Password Incorrect").and()
+				.formLogin().loginPage("/login").permitAll().and().logout().permitAll();
+//				
 	}
 
 	@Override

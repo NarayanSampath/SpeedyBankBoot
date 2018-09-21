@@ -3,9 +3,12 @@ package com.eg.speedybank.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,11 +21,11 @@ public class BaseController implements ErrorController {
 		Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
 		Exception exception = (Exception) request.getAttribute("javax.servlet.error.exception");
 		return String.format(
-				"<html>" + "<head>" + "<title>Error Page</title>" + "</head>" + "<body>"
+						"<html>" + "<head>" + "<title>Error Page</title>" + "</head>" + "<body>"
 						+ "<div style='display:flex; position:absolute; top:0; bottom:0; right:0; left:0;'>"
 						+ "<div style='margin:auto'>" + "<h1>Error Page</h1>" + "<h2>Status code: %s</h2>"
 						+ "<div>Exception Message: %s</div>" + "</div>" + "</div>" + "</body>" + "</html>",
-				statusCode, exception == null ? "N/A" : exception.getMessage());
+						statusCode, exception == null ? "N/A" : exception.getMessage());
 	}
 
 	@Override
@@ -34,20 +37,31 @@ public class BaseController implements ErrorController {
 	public String home() {
 		return "home.html";
 	}
-
-	@RequestMapping("/signin")
-	public String login() {
+	@RequestMapping(value="/login")
+	public String loginwithpathparam(@RequestParam( name="error", required=false ) String error) {
 		return "signin.html";
 	}
-
 	@RequestMapping("/reg")
 	public String register() {
 		return "register.html";
 	}
+	@Secured({"ROLE_USER","ROLE_ADMIN"})
+	@RequestMapping("/fundtransfer")
+	public String fundTransfer() {
+		return "fundtransfer.html";
+	}
+	@Secured({"ROLE_USER","ROLE_ADMIN"})
+	@RequestMapping("/loan")
+	public String loan() {
+		return "loan.html";
+	}
+	
+	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	@RequestMapping("/userdash")
 	public ModelAndView userDashboard() {
 		return new ModelAndView("userDash.html");
 	}
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/admindash")
 	public ModelAndView adminDashboard() {
 		return new ModelAndView("adminDash.html");

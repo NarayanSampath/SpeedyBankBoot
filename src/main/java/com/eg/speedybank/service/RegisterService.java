@@ -29,13 +29,14 @@ public class RegisterService {
 		String errorMessage = regValidator.ValidateNewUser(userDto);
 		if (errorMessage == "") {
 			try {
-				SpeedyAuthority isauthority = authRepo.findByAuthority("ROLE_USER");
+				String role="ROLE_USER";
+				SpeedyAuthority isauthority = authRepo.findByAuthority(role);
 				if(isauthority==null) {
 					SpeedyAuthority newAuthority = new SpeedyAuthority();
-					newAuthority.setAuthority("ROLE_USER");
+					newAuthority.setAuthority(role);
 					authRepo.save(newAuthority);
 				}
-				SpeedyAuthority authority = authRepo.findByAuthority("ROLE_USER");
+				SpeedyAuthority authority = authRepo.findByAuthority(role);
 				
 				SpeedyUserDetails userDetails = new SpeedyUserDetails();
 				userDetails.setAccountNonExpired(true);
