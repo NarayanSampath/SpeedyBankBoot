@@ -17,35 +17,34 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
-	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
-	@Override
-	public void onAuthenticationSuccess(HttpServletRequest arg0, HttpServletResponse arg1,
-			Authentication authentication) throws IOException, ServletException {
-		boolean hasUserRole = false;
-		boolean hasAdminRole = false;
-		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-		for(GrantedAuthority authority:authorities){
-			if (authority.getAuthority().equals("ROLE_USER")) {
-				hasUserRole=true;
-				break;
-				
-			} 
-			if (authority.getAuthority().equals("ROLE_ADMIN")) {
-				hasAdminRole=true;
-				break;
-			}
-			else {
-				throw new IllegalStateException();
-			}
-		}
-		if (hasUserRole) {
-			redirectStrategy.sendRedirect(arg0, arg1, "/userdash");
-		} else if (hasAdminRole) {
-			redirectStrategy.sendRedirect(arg0, arg1, "/admindash");
-		} else {
-			throw new IllegalStateException();
-		}
-	}
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest arg0, HttpServletResponse arg1,
+                                        Authentication authentication) throws IOException, ServletException {
+        boolean hasUserRole = false;
+        boolean hasAdminRole = false;
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        for (GrantedAuthority authority : authorities) {
+            if (authority.getAuthority().equals("ROLE_USER")) {
+                hasUserRole = true;
+                break;
+
+            }
+            if (authority.getAuthority().equals("ROLE_ADMIN")) {
+                hasAdminRole = true;
+                break;
+            } else {
+                throw new IllegalStateException();
+            }
+        }
+        if (hasUserRole) {
+            redirectStrategy.sendRedirect(arg0, arg1, "/dashboard");
+        } else if (hasAdminRole) {
+            redirectStrategy.sendRedirect(arg0, arg1, "/admindash");
+        } else {
+            throw new IllegalStateException();
+        }
+    }
 
 }

@@ -1,0 +1,23 @@
+<div id="message" style="text-align: center;"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-10 mx-auto mt-5">
+      <h1>Login Here!</h1>
+
+      <form class="mt-5 mb-5">
+        <div class="form-group">
+            <label>E-mail</label>
+            <input placeholder="E-mail Address" [(ngModel)]="email" name="email">
+        </div>
+       <div class="form-group">
+            <label>Password</label>
+            <input placeholder="Password" type="password" name="password" [(ngModel)]="password">
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox">Agree to our terms and conditions<br>
+          <button id="submit" class="mt-4 wide-btn" (click)="loginReq()">Sign Up</button>
+        </div>
+      </form><br><br>
+    </div>
+  </div>
+</div>

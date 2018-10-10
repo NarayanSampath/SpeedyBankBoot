@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark "
+     style="background-image: linear-gradient(to bottom, #660b64, #000000);">
+    <a class="navbar-brand" href="/">Speedy Bank</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <div class="dropdown-divider"></div>
+            <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home fa-2x" data-toggle='tooltip'
+                                                                 data-placement='bottom' title='Home'></i> </a></li>
+            <li class="nav-item"><a class="nav-link" href="/fundtransfer"><i class="fas fa-dollar-sign fa-2x"
+                                                                             data-toggle='tooltip'
+                                                                             data-placement='bottom'
+                                                                             title='Funds'></i></i></a></li>
+            <li class="nav-item"><a class="nav-link" href="/loan"><i class="fas fa-suitcase fa-2x" data-toggle='tooltip'
+                                                                     data-placement='bottom' title='Loan'></i></a></li>
+            <li class="nav-item"><a class="nav-link" href="/userdash"><i class="fas fa-tachometer-alt fa-2x"
+                                                                         data-toggle='tooltip' data-placement='bottom'
+                                                                         title='User - Dashboard'></i></a></li>
+            <li class="nav-item"><a class="nav-link" href="/admindash"><i class="fas fa-user-secret fa-2x"
+                                                                          data-toggle='tooltip' data-placement='bottom'
+                                                                          title='Admin - Dashboard'></i></a></li>
+            <li class="nav-item"><a class="nav-link" href="/reg"><i class="fas fa-user-plus fa-2x" data-toggle='tooltip'
+                                                                    data-placement='bottom' title='Sign Up'></i></a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/login"><i class="fas fa-sign-in-alt fa-2x"
+                                                                      data-toggle='tooltip' data-placement='bottom'
+                                                                      title='Login'></i></a></li>
+            <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt fa-2x"
+                                                                       data-toggle='tooltip' data-placement='bottom'
+                                                                       title='Logout'></i></a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+    <br><br>
+    <h4>User Authorities</h4>
+
+    <h6>New Authority</h6>
+    <input type="text" id="authorityname" placeholder="New Authority Name">
+    <button class="btn btn-outline-primary" id="createauthority">Create new Authority</button>
+
+    <h6>Delete Authority</h6>
+    <select id="dropdownMenu"></select>
+    <button class="btn btn-outline-primary" id="deleteauthority">Delete Authority</button>
+    <br><br>
+    <hr>
+
+    <h4>User Permissions</h4>
+    <div id="userdisplay"></div>
+
+    <h4>Existing Permissions</h4>
+    <select size=4 style="width: 49%;" id="users"></select>
+    <select size=4 style="width: 49%;" id="auths"></select>
+
+    <h4>Add / Delete Permissions</h4>
+    <select multiple="multiple" style="width: 49%;" id="userslist"></select>
+    <select multiple="multiple" style="width: 49%;" id="authlist"></select>
+    <button type="button" class="btn btn-outline-primary mt-3" id="updateauth">Update Authorities</button>
+    <br><br>
+    <hr>
+
+    <h4>Create Account Type</h4>
+    <div class="row">
+        <div class="input-group col-6 mt-2">
+            <div class="input-group-prepend"><span class="input-group-text">Account Type Name </span></div>
+            <input type="text" class="form-control" id="typename">
+        </div>
+        <div class="input-group col-6 mt-2">
+            <div class="input-group-prepend"><span class="input-group-text">Interest Rate</span></div>
+            <input type="text" class="form-control" id="interestrate">
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-group col-6 mt-2">
+            <div class="input-group-prepend"><span class="input-group-text">Withdrawal Limit</span></div>
+            <input type="text" class="form-control" id="withdrawallimit">
+        </div>
+        <div class="input-group col-6 mt-2">
+            <div class="input-group-prepend"><span class="input-group-text">Minimum Duration</span></div>
+            <input type="text" class="form-control" id="minimumduration">
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-group col-6 mt-2">
+            <div class="input-group-prepend"><span class="input-group-text">Minimum Balance </span></div>
+            <input type="text" class="form-control" id="minimumbalance">
+        </div>
+    </div>
+    <button class="btn btn-outline-primary mt-4 col-2" id="createacctype">Create Account Type</button>
+    <br><br>
+
+    <h4>Account Types</h4>
+    <div id="accounttypes"></div>
+</div>
+<!--  Jquery -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/authorities.js"></script>
+<script type="text/javascript" src="js/accounttype.js"></script>
+</body>
+</html>

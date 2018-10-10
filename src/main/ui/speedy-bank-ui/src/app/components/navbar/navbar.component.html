@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <button mat-button style="padding: 15px;"><h1>Speedy Bank</h1></button>
+  <!--this pushes the rest of the menu items to the right-->
+  <span style="flex: 1 1 auto;"></span>
+  <!--loops through the menu items and adds it to the nav bar-->
+  <!--<div *ngFor="let key of getKeys(homeMenu)">-->
+    <a mat-button [routerLink]=kvp.menuUrl style="color: white; padding-bottom: 15px; padding-top: 15px;" *ngFor="let kvp of menu ">{{kvp.menuName}}</a>
+  <!--</div>-->
+</mat-toolbar>

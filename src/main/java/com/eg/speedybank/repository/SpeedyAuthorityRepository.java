@@ -7,5 +7,5 @@ import com.eg.speedybank.entity.SpeedyAuthority;
 
 @Repository
 public interface SpeedyAuthorityRepository extends CrudRepository<SpeedyAuthority, Long> {
-	public SpeedyAuthority findByAuthority(String authority) ;
+    public SpeedyAuthority findByAuthority(String authority);
 }

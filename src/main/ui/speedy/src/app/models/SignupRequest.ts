@@ -1,0 +1,29 @@
+export class SignUpRequest {
+  private email: string;
+  private password: string;
+  private userName: string;
+
+  get _email(): string {
+    return this.email;
+  }
+
+  set _email(value: string) {
+    this.email = value;
+  }
+
+  get _password(): string {
+    return this.password;
+  }
+
+  set _password(value: string) {
+    this.password = value;
+  }
+
+  get _userName(): string {
+    return this.userName;
+  }
+
+  set _userName(value: string) {
+    this.userName = value;
+  }
+}

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.eg.speedybank.entity.SpeedyUser;
 
 @Repository
-public interface UserRepository extends CrudRepository<SpeedyUser, Long>{
-	public SpeedyUser findByEmail(String email);
+public interface UserRepository extends CrudRepository<SpeedyUser, Long> {
+    public SpeedyUser findByEmail(String email);
 }
