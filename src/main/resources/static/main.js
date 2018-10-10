@@ -737,7 +737,8 @@ var LoginService = /** @class */ (function () {
         this._URL = '/login';
     }
     LoginService.prototype.login = function (loginRequest) {
-        this.http.post(this._URL, loginRequest).subscribe(function (data) { return console.log(data); });
+        console.log(JSON.stringify(loginRequest));
+        this.http.post(this._URL, JSON.stringify(loginRequest)).subscribe(function (data) { return console.log(data); });
     };
     LoginService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -831,7 +832,7 @@ var SignupService = /** @class */ (function () {
         this._URL = '/signup';
     }
     SignupService.prototype.signup = function (request) {
-        console.log(JSON.stringify(request));
+        console.log(request);
         this.http.post(this._URL, request).subscribe(function (data) { return console.log(data); });
     };
     SignupService = __decorate([

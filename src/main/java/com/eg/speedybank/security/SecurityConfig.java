@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/login").permitAll().and().logout().permitAll().and()
                 .formLogin().failureHandler(customAuthenticationfailureHandler).failureUrl("/login?error=Email Or Password Incorrect");
 
-        http.httpBasic().and().authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers( "/css/**", "/js/**", "/images/**", "/videos/**").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/secured").authenticated();

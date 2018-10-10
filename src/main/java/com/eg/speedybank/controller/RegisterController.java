@@ -19,10 +19,6 @@ public class RegisterController {
 
 //    @Autowired
 //    SpeedyUser user;
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public String register() {
-        return "Sign Up";
-}
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public RegisterResponseDTO register(@RequestBody RegisterRequestDTO userDto) {

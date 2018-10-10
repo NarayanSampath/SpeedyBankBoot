@@ -12,7 +12,7 @@ private _URL = '/signup';
   constructor(private http: HttpClient) {}
 
   public signup(request: SignUpRequest) {
-    console.log(JSON.stringify(request));
+    console.log(request);
     this.http.post<SignUpRequest>(this._URL, request).subscribe(data => console.log(data));
   }
 }
